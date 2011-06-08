@@ -13,8 +13,8 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-  <div id="containter">
+<body>
+  <div id="container">
     <?php $header = file_get_contents("http://".$_SERVER['HTTP_HOST']."/static/header"); echo $header; ?>
     <?php $navigation = file_get_contents("http://".$_SERVER['HTTP_HOST']."/static/navigation"); echo $navigation; ?>
     <div id="main">
