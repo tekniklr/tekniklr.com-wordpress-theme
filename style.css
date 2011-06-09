@@ -1,14 +1,9 @@
 /*
-Theme Name: tekniklr.com
-Theme URI: http://wordpress.org/extend/themes/toolbox/
-Author: Automattic
-Author URI: http://automattic.com/
-Description: A semantic, HTML5, canvas for CSS artists and an ultra-minimal set of super-clean templates for your own WordPress theme development.
-Version: 1.1
-License: GNU General Public License
-License URI: license.txt
-Tags: custom-menu, sticky-post, microformats, rtl-language-support, translation-ready
+	Theme Name: tekniklr.com
+	Theme URI: http://aarontgrogg.com/boilerplate/
+	Description: A version of the merger created by Aaron T. Grogg (<a href="http://aarontgrogg.com/">http://aarontgrogg.com/</a>) of the HTML5 Boilerplate (<a href="http://html5boilerplate.com/">http://html5boilerplate.com/</a>) and the Starkers theme (<a href="http://starkerstheme.com/">http://starkerstheme.com/</a>) modifed by tekniklr for use with rails on tekniklr.com.
 
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
+	License: GNU General Public License v2.0
+	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+/* actual style in rails so that it can use sass and will be compressed in the assets pathline */

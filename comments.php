@@ -1,128 +1,72 @@
 <?php
 /**
+ * The template for displaying Comments.
+ *
+ * The area of the page that contains both current comments
+ * and the comment form.  The actual display of comments is
+ * handled by a callback to boilerplate_comment which is
+ * located in the functions.php file.
+ *
  * @package WordPress
- * @subpackage Toolbox
+ * @subpackage Boilerplate
+ * @since Boilerplate 1.0
  */
-
-if ( ! function_exists( 'toolbox_comment' ) ) :
-/**
- * Template for comments and pingbacks.
- *
- * To override this walker in a child theme without modifying the comments template
- * simply create your own toolbox_comment(), and that function will be used instead.
- *
- * Used as a callback by wp_list_comments() for displaying the comments.
- *
- * @since Toolbox 0.4
- */
-function toolbox_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case '' :
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<footer>
-				<div class="comment-author vcard">
-					<?php echo get_avatar( $comment, 40 ); ?>
-					<?php printf( __( '%s <span class="says">says:</span>', 'toolbox' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-				</div><!-- .comment-author .vcard -->
-				<?php if ( $comment->comment_approved == '0' ) : ?>
-					<em><?php _e( 'Your comment is awaiting moderation.', 'toolbox' ); ?></em>
-					<br />
-				<?php endif; ?>
-
-				<div class="comment-meta commentmetadata">
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time pubdate datetime="<?php comment_time( 'c' ); ?>">
-					<?php
-						/* translators: 1: date, 2: time */
-						printf( __( '%1$s at %2$s', 'toolbox' ), get_comment_date(),  get_comment_time() ); ?>
-					</time></a>
-					<?php edit_comment_link( __( '(Edit)', 'toolbox' ), ' ' );
-					?>
-				</div><!-- .comment-meta .commentmetadata -->
-			</footer>
-
-			<div class="comment-content"><?php comment_text(); ?></div>
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-##  -->
-
-	<?php
-			break;
-		case 'pingback'  :
-		case 'trackback' :
-	?>
-	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'toolbox' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __('(Edit)', 'toolbox'), ' ' ); ?></p>
-	<?php
-			break;
-	endswitch;
-}
-endif; // ends check for toolbox_comment()
-
 ?>
 
-	<div id="comments">
-	<?php if ( post_password_required() ) : ?>
-		<div class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'toolbox' ); ?></div>
-	</div><!-- .comments -->
-	<?php return;
-		endif;
-	?>
+<?php if ( post_password_required() ) : ?>
+				<p><?php _e( 'This post is password protected. Enter the password to view any comments.', 'boilerplate' ); ?></p>
+<?php
+		/* Stop the rest of comments.php from being processed,
+		 * but don't kill the script entirely -- we still have
+		 * to fully load the template.
+		 */
+		return;
+	endif;
+?>
 
-	<?php // You can start editing here -- including this comment! ?>
+<?php
+	// You can start editing here -- including this comment!
+?>
 
-	<?php if ( have_comments() ) : ?>
-		<h2 id="comments-title">
-			<?php
-			    printf( _n( 'One Response to %2$s', '%1$s Responses to %2$s', get_comments_number(), 'toolbox' ),
-			        number_format_i18n( get_comments_number() ), '<em>' . get_the_title() . '</em>' );
-			?>
-		</h2>
+<?php if ( have_comments() ) : ?>
+			<!-- STARKERS NOTE: The following h3 id is left intact so that comments can be referenced on the page -->
+			<h3 id="comments-title"><?php
+				printf( _n( 'One Response to %2$s', '%1$s Responses to %2$s', get_comments_number(), 'boilerplate' ),
+				number_format_i18n( get_comments_number() ), '' . get_the_title() . '' );
+			?></h3>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-above">
-			<h1 class="section-heading"><?php _e( 'Comment navigation', 'toolbox' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'toolbox' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'toolbox' ) ); ?></div>
-		</nav>
-		<?php endif; // check for comment navigation ?>
+<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+				<?php previous_comments_link( __( '&larr; Older Comments', 'boilerplate' ) ); ?>
+				<?php next_comments_link( __( 'Newer Comments &rarr;', 'boilerplate' ) ); ?>
+<?php endif; // check for comment navigation ?>
 
-		<ol class="commentlist">
-			<?php wp_list_comments( array( 'callback' => 'toolbox_comment' ) ); ?>
-		</ol>
+			<ol>
+				<?php
+					/* Loop through and list the comments. Tell wp_list_comments()
+					 * to use boilerplate_comment() to format the comments.
+					 * If you want to overload this in a child theme then you can
+					 * define boilerplate_comment() and that will be used instead.
+					 * See boilerplate_comment() in boilerplate/functions.php for more.
+					 */
+					wp_list_comments( array( 'callback' => 'boilerplate_comment' ) );
+				?>
+			</ol>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below">
-			<h1 class="section-heading"><?php _e( 'Comment navigation', 'toolbox' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'toolbox' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'toolbox' ) ); ?></div>
-		</nav>
-		<?php endif; // check for comment navigation ?>
+<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
+				<?php previous_comments_link( __( '&larr; Older Comments', 'boilerplate' ) ); ?>
+				<?php next_comments_link( __( 'Newer Comments &rarr;', 'boilerplate' ) ); ?>
+<?php endif; // check for comment navigation ?>
 
-	<?php else : // this is displayed if there are no comments so far ?>
+<?php else : // or, if we don't have comments:
 
-		<?php if ( comments_open() ) : // If comments are open, but there are no comments ?>
+	/* If there are no comments and comments are closed,
+	 * let's leave a little note, shall we?
+	 */
+	if ( ! comments_open() ) :
+?>
+	<p><?php _e( 'Comments are closed.', 'boilerplate' ); ?></p>
+<?php endif; // end ! comments_open() ?>
 
-		<?php else : // or, if we don't have comments:
+<?php endif; // end have_comments() ?>
 
-			/* If there are no comments and comments are closed,
-			 * let's leave a little note, shall we?
-			 * But only on posts! We don't want the note on pages.
-			 */
-			if ( ! comments_open() && ! is_page() ) :
-			?>
-			<p class="nocomments"><?php _e( 'Comments are closed.', 'toolbox' ); ?></p>
-			<?php endif; // end ! comments_open() && ! is_page() ?>
-
-
-		<?php endif; ?>
-
-	<?php endif; ?>
-
-	<?php comment_form(); ?>
-
-</div><!-- #comments -->
+<?php comment_form(); ?>

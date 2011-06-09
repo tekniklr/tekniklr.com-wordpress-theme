@@ -1,43 +1,52 @@
 <?php
 /**
+ * The template for displaying Author Archive pages.
+ *
  * @package WordPress
- * @subpackage Toolbox
+ * @subpackage Boilerplate
+ * @since Boilerplate 1.0
  */
 
 get_header(); ?>
 
-<?php the_post(); ?>
+<?php
+	/* Queue the first post, that way we know who
+	 * the author is when we try to get their name,
+	 * URL, description, avatar, etc.
+	 *
+	 * We reset this later so we can run the loop
+	 * properly with a call to rewind_posts().
+	 */
+	if ( have_posts() )
+		the_post();
+?>
 
-<header class="page-header">
-	<h1 class="page-title author"><?php printf( __( 'Author Archives: <span class="vcard">%s</span>', 'toolbox' ), "<a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a>" ); ?></h1>
-</header>
+				<h1><?php printf( __( 'Author Archives: %s', 'boilerplate' ), "<a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a>" ); ?></h1>
 
-<?php rewind_posts(); ?>
+<?php
+// If a user has filled out their description, show a bio on their entries.
+if ( get_the_author_meta( 'description' ) ) : ?>
 
-<?php /* Display navigation to next/previous pages when applicable */ ?>
-<?php if ( $wp_query->max_num_pages > 1 ) : ?>
-	<nav id="nav-above">
-		<h1 class="section-heading"><?php _e( 'Post navigation', 'toolbox' ); ?></h1>
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'toolbox' ) ); ?></div>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'toolbox' ) ); ?></div>
-	</nav><!-- #nav-above -->
+							<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'boilerplate_author_bio_avatar_size', 60 ) ); ?>
+							<h2><?php printf( __( 'About %s', 'boilerplate' ), get_the_author() ); ?></h2>
+							<?php the_author_meta( 'description' ); ?>
+
 <?php endif; ?>
 
-<?php /* Start the Loop */ ?>
-<?php while ( have_posts() ) : the_post(); ?>
-	
-	<?php get_template_part( 'content', get_post_format() ); ?>
+<?php
+	/* Since we called the_post() above, we need to
+	 * rewind the loop back to the beginning that way
+	 * we can run the loop properly, in full.
+	 */
+	rewind_posts();
 
-<?php endwhile; ?>
+	/* Run the loop for the author archive page to output the authors posts
+	 * If you want to overload this in a child theme then include a file
+	 * called loop-author.php and that will be used instead.
+	 */
+	 get_template_part( 'loop', 'author' );
+?>
 
-<?php /* Display navigation to next/previous pages when applicable */ ?>
-<?php if (  $wp_query->max_num_pages > 1 ) : ?>
-	<nav id="nav-below">
-		<h1 class="section-heading"><?php _e( 'Post navigation', 'toolbox' ); ?></h1>
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'toolbox' ) ); ?></div>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'toolbox' ) ); ?></div>
-	</nav><!-- #nav-below -->
-<?php endif; ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
