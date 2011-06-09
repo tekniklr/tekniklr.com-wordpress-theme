@@ -1,37 +1,52 @@
 <?php
 /**
+ * The Sidebar containing the primary and secondary widget areas.
+ *
  * @package WordPress
- * @subpackage Toolbox
+ * @subpackage Boilerplate
+ * @since Boilerplate 1.0
  */
 ?>
-<div id="secondary" class="widget-area" role="complementary">
-	<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
 
-		<aside id="search" class="widget widget_search">
-			<?php get_search_form(); ?>
-		</aside>
+			<ul class="xoxo">
 
-		<aside id="archives" class="widget">
-			<h1 class="widget-title"><?php _e( 'Archives', 'toolbox' ); ?></h1>
-			<ul>
-				<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
+<?php
+	/* When we call the dynamic_sidebar() function, it'll spit out
+	 * the widgets for that widget area. If it instead returns false,
+	 * then the sidebar simply doesn't exist, so we'll hard-code in
+	 * some default sidebar stuff just in case.
+	 */
+	if ( ! dynamic_sidebar( 'primary-widget-area' ) ) : ?>
+	
+			<li>
+				<?php get_search_form(); ?>
+			</li>
+
+			<li>
+				<h3><?php _e( 'Archives', 'boilerplate' ); ?></h3>
+				<ul>
+					<?php wp_get_archives( 'type=monthly' ); ?>
+				</ul>
+			</li>
+
+			<li>
+				<h3><?php _e( 'Meta', 'boilerplate' ); ?></h3>
+				<ul>
+					<?php wp_register(); ?>
+					<li><?php wp_loginout(); ?></li>
+					<?php wp_meta(); ?>
+				</ul>
+			</li>
+
+		<?php endif; // end primary widget area ?>
 			</ul>
-		</aside>
 
-		<aside id="meta" class="widget">
-			<h1 class="widget-title"><?php _e( 'Meta', 'toolbox' ); ?></h1>
-			<ul>
-				<?php wp_register(); ?>
-				<aside><?php wp_loginout(); ?></aside>
-				<?php wp_meta(); ?>
+<?php
+	// A second sidebar for widgets, just because.
+	if ( is_active_sidebar( 'secondary-widget-area' ) ) : ?>
+
+			<ul class="xoxo">
+				<?php dynamic_sidebar( 'secondary-widget-area' ); ?>
 			</ul>
-		</aside>
 
-	<?php endif; // end sidebar widget area ?>
-</div><!-- #secondary .widget-area -->
-
-<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
-<div id="tertiary" class="widget-area" role="complementary">
-	<?php dynamic_sidebar( 'sidebar-2' ); ?>
-</div><!-- #tertiary .widget-area -->
 <?php endif; ?>
