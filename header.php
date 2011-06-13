@@ -8,8 +8,9 @@
   <?php $headincmeta = file_get_contents("http://".$_SERVER['HTTP_HOST']."/static/headincmeta"); echo $headincmeta; ?>
   <title><?php
 	  global $page, $paged;
-	  wp_title( '~', true, 'right' );
-  ?> blog ~ tekniklr.com</title>
+	  $title = get_the_title();
+	  echo strtolower($title);
+  ?> ~ blog ~ tekniklr.com</title>
   <?php wp_head(); ?>
 </head>
 
