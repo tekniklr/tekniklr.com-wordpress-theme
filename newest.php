@@ -8,7 +8,7 @@ $num_to_show = 1;
 if ( have_posts() ) while ( have_posts() && ($num_shown < $num_to_show) ) : the_post(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<h1><?php the_title(); ?></h1>
+	<h1><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
 	<div class="entry-meta">
 		<?php boilerplate_posted_on(); ?>
 	</div><!-- .entry-meta -->
