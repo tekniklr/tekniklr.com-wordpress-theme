@@ -7,7 +7,7 @@ Template Name: category_list
 
 <?php
 $orderby      = 'name'; 
-$show_count   = 0;
+$show_count   = 1;
 $pad_counts   = 0;
 $hide_empty   = 0;
 $hierarchical = 1;
