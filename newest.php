@@ -17,8 +17,18 @@ if ( have_posts() ) while ( have_posts() && ($num_shown < $num_to_show) ) : the_
 		<?php wp_link_pages( array( 'before' => '' . __( 'Pages:', 'boilerplate' ), 'after' => '' ) ); ?>
 	</div><!-- .entry-content -->
 	<footer class="entry-utility">
-		<?php boilerplate_posted_in(); ?>
-		<?php edit_post_link( __( 'Edit', 'boilerplate' ), '<span class="edit-link">', '</span>' ); ?>
+  <?php if ( count( get_the_category() ) ) : ?>
+		<?php printf( __( 'Posted in %2$s', 'boilerplate' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+		|
+	<?php endif; ?>
+	<?php
+		$tags_list = get_the_tag_list( '', ', ' );
+		if ( $tags_list ):
+	?>
+		<?php printf( __( 'Tagged %2$s', 'boilerplate' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+		|
+	<?php endif; ?>
+	<?php comments_popup_link( __( 'Leave a comment', 'boilerplate' ), __( '1 Comment', 'boilerplate' ), __( '% Comments', 'boilerplate' ) ); ?>
 	</footer><!-- .entry-utility -->
 </article><!-- #post-## -->
 
