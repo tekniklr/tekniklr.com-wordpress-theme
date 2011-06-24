@@ -14,7 +14,7 @@ get_header(); ?>
       		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?></div>
 				</nav><!-- #nav-above -->
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<h2 class="entry-title"><?php the_title(); ?></h1>
+					<h2 class="entry-title"><?php the_title(); ?></h2>
 					<div class="entry-meta">
 						<?php boilerplate_posted_on(); ?>
 					</div><!-- .entry-meta -->
