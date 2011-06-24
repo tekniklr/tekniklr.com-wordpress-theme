@@ -10,11 +10,11 @@
 get_header(); ?>
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<nav id="nav-above" class="navigation">
-					<?php previous_post_link( '%link', '' . _x( '&larr;', 'Previous post link', 'boilerplate' ) . ' %title' ); ?>
-					<?php next_post_link( '%link', '%title ' . _x( '&rarr;', 'Next post link', 'boilerplate' ) . '' ); ?>
+    		  <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'boilerplate' ) ); ?></div>
+      		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?></div>
 				</nav><!-- #nav-above -->
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<h1><?php the_title(); ?></h1>
+					<h2 class="entry-title"><?php the_title(); ?></h1>
 					<div class="entry-meta">
 						<?php boilerplate_posted_on(); ?>
 					</div><!-- .entry-meta -->
@@ -38,8 +38,8 @@ get_header(); ?>
 					</footer><!-- .entry-utility -->
 				</article><!-- #post-## -->
 				<nav id="nav-below" class="navigation">
-					<div class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'boilerplate' ) . '</span> %title' ); ?></div>
-					<div class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'boilerplate' ) . '</span>' ); ?></div>
+      		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'boilerplate' ) ); ?></div>
+      		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?></div>
 				</nav><!-- #nav-below -->
 				<?php comments_template( '', true ); ?>
 <?php endwhile; // end of the loop. ?>
