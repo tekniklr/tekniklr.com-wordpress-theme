@@ -17,3 +17,4 @@
       <?php $header = file_get_contents("http://".$_SERVER['HTTP_HOST']."/static/header"); echo $header; ?>
       <?php $navigation = file_get_contents("http://".$_SERVER['HTTP_HOST']."/static/navigation"); echo $navigation; ?>
       <div id="main">
+      	<div id="wordpress">
