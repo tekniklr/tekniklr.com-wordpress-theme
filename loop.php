@@ -127,16 +127,10 @@
 				<?php boilerplate_posted_on(); ?>
 			</div><!-- .entry-meta -->
 
-	<?php if ( is_search() ) : // Only display excerpts for archives and search. ?>
-			<div class="entry-summary">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
-	<?php else : ?>
 			<div class="entry-content">
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?>
 				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'boilerplate' ), 'after' => '</div>' ) ); ?>
 			</div><!-- .entry-content -->
-	<?php endif; ?>
 
 			<footer class="entry-utility">
 				<?php if ( count( get_the_category() ) ) : ?>
