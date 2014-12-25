@@ -9,5 +9,5 @@ original: http://wordpress.org/extend/themes/boilerplate
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 /* actual style in rails so that it can use sass and will be compressed in the assets pathline
-  https://github.com/tekniklr/tekniklr.com/blob/master/app/assets/stylesheets/wordpress.css.scss
+  https://github.com/tekniklr/tekniklr.com/blob/master/app/assets/stylesheets/wordpress.scss
 */
