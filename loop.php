@@ -88,8 +88,6 @@
 
 			<footer class="entry-utility">
 				<a href="<?php echo get_term_link( _x('gallery', 'gallery category slug', 'boilerplate'), 'category' ); ?>" title="<?php esc_attr_e( 'View posts in the Gallery category', 'boilerplate' ); ?>"><?php _e( 'More Galleries', 'boilerplate' ); ?></a>
-				|
-				<?php comments_popup_link( __( 'Leave a comment', 'boilerplate' ), __( '1 Comment', 'boilerplate' ), __( '% Comments', 'boilerplate' ) ); ?>
 				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '|', '' ); ?>
 			</footer><!-- .entry-utility -->
 		</article><!-- #post-## -->
@@ -111,8 +109,6 @@
 
 			<footer class="entry-utility">
 				<?php boilerplate_posted_on(); ?>
-				|
-				<?php comments_popup_link( __( 'Leave a comment', 'boilerplate' ), __( '1 Comment', 'boilerplate' ), __( '% Comments', 'boilerplate' ) ); ?>
 				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '| ', '' ); ?>
 			</footer><!-- .entry-utility -->
 		</article><!-- #post-## -->
@@ -142,9 +138,7 @@
 					if ( $tags_list ):
 				?>
 					<?php printf( __( 'Tagged %2$s', 'boilerplate' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
-					|
 				<?php endif; ?>
-				<?php comments_popup_link( __( 'Leave a comment', 'boilerplate' ), __( '1 Comment', 'boilerplate' ), __( '% Comments', 'boilerplate' ) ); ?>
 				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '| ', '' ); ?>
 			</footer><!-- .entry-utility -->
 		</article><!-- #post-## -->
