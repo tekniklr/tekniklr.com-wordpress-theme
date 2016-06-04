@@ -8,7 +8,7 @@
   	  if (!empty($title)) {
   	    echo strtolower($title);
 	    }
-    ?>blog ☆ tekniklr.com</title>
+    ?>blog ☆ tekniklr</title>
     <?php wp_head(); ?>
   </head>
 
