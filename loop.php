@@ -135,7 +135,7 @@
 				?>
 					<?php printf( __( 'Tagged %2$s', 'boilerplate' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
 				<?php endif; ?>
-				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '| ', '' ); ?>
+				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '', '' ); ?>
 			</footer><!-- .entry-utility -->
 		</article><!-- #post-## -->
 
