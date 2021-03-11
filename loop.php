@@ -129,10 +129,6 @@
 			</div><!-- .entry-content -->
 
 			<footer class="entry-utility">
-				<?php if ( count( get_the_category() ) ) : ?>
-					<?php printf( __( 'Posted in %2$s', 'boilerplate' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
-					|
-				<?php endif; ?>
 				<?php
 					$tags_list = get_the_tag_list( '', ', ' );
 					if ( $tags_list ):
