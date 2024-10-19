@@ -36,86 +36,8 @@
 	</article><!-- #post-0 -->
 <?php endif; ?>
 
-<?php
-	/* Start the Loop.
-	 *
-	 * In Twenty Ten we use the same loop in multiple contexts.
-	 * It is broken into three main parts: when we're displaying
-	 * posts that are in the gallery category, when we're displaying
-	 * posts in the asides category, and finally all other posts.
-	 *
-	 * Additionally, we sometimes check for whether we are on an
-	 * archive page, a search page, etc., allowing for small differences
-	 * in the loop on each template without actually duplicating
-	 * the rest of the loop that is shared.
-	 *
-	 * Without further ado, the loop:
-	 */ ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
-<?php /* How to display posts in the Gallery category. */ ?>
-
-	<?php if ( in_category( _x('gallery', 'gallery category slug', 'boilerplate') ) ) : ?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'boilerplate' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
-
-			<div class="entry-meta">
-				<?php boilerplate_posted_on(); ?>
-			</div><!-- .entry-meta -->
-
-			<div class="entry-content">
-<?php if ( post_password_required() ) : ?>
-				<?php the_content(); ?>
-<?php else : ?>			
-				<?php 
-					$images = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'orderby' => 'menu_order', 'order' => 'ASC', 'numberposts' => 999 ) );
-					if ( $images ) :
-						$total_images = count( $images );
-						$image = array_shift( $images );
-						$image_img_tag = wp_get_attachment_image( $image->ID, 'thumbnail' );
-				?>
-						<div class="gallery-thumb">
-							<a class="size-thumbnail" href="<?php the_permalink(); ?>"><?php echo $image_img_tag; ?></a>
-						</div><!-- .gallery-thumb -->
-						<p><em><?php printf( __( 'This gallery contains <a %1$s>%2$s photos</a>.', 'boilerplate' ),
-								'href="' . get_permalink() . '" title="' . sprintf( esc_attr__( 'Permalink to %s', 'boilerplate' ), the_title_attribute( 'echo=0' ) ) . '" rel="bookmark"',
-								$total_images
-							); ?></em></p>
-				<?php endif; ?>
-						<?php the_excerpt(); ?>
-<?php endif; ?>
-			</div><!-- .entry-content -->
-
-			<footer class="entry-utility">
-				<a href="<?php echo get_term_link( _x('gallery', 'gallery category slug', 'boilerplate'), 'category' ); ?>" title="<?php esc_attr_e( 'View posts in the Gallery category', 'boilerplate' ); ?>"><?php _e( 'More Galleries', 'boilerplate' ); ?></a>
-				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '|', '' ); ?>
-			</footer><!-- .entry-utility -->
-		</article><!-- #post-## -->
-
-<?php /* How to display posts in the asides category */ ?>
-
-	<?php elseif ( in_category( _x('asides', 'asides category slug', 'boilerplate') ) ) : ?>
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-		<?php if ( is_archive() || is_search() ) : // Display excerpts for archives and search. ?>
-			<div class="entry-summary">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
-		<?php else : ?>
-			<div class="entry-content">
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'boilerplate' ) ); ?>
-			</div><!-- .entry-content -->
-		<?php endif; ?>
-
-			<footer class="entry-utility">
-				<?php boilerplate_posted_on(); ?>
-				<?php edit_post_link( __( 'Edit', 'boilerplate' ), '| ', '' ); ?>
-			</footer><!-- .entry-utility -->
-		</article><!-- #post-## -->
-
-<?php /* How to display all other posts. */ ?>
-
-	<?php else : ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'boilerplate' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 
