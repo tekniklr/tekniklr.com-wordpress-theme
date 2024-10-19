@@ -1,13 +1,15 @@
 /*
-	Theme Name: tekniklr.com
-	Theme URI: http://aarontgrogg.com/boilerplate/
-	Description: A version of the merger created by Aaron T. Grogg (http://aarontgrogg.com/) of the HTML5 Boilerplate (http://html5boilerplate.com/) and the Starkers theme (http://starkerstheme.com/) modifed by tekniklr for use with rails on tekniklr.com.
+	Theme Name: blog.tekniklr.com
+	Theme URI: https://github.com/tekniklr/tekniklr.com-wordpress-theme
+	Author: tekniklr
+	Author URI: https://tekniklr.com/
+	Description: A version of the theme created by Aaron T. Grogg (http://aarontgrogg.com/) that merged the HTML5 Boilerplate (http://html5boilerplate.com/) and the Starkers theme (http://starkerstheme.com/); modifed by tekniklr for use with rails on tekniklr.com.
 
 original: http://wordpress.org/extend/themes/boilerplate
 
 	License: GNU General Public License v2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
-/* actual style in rails so that it can use sass and will be compressed in the assets pathline
+/* actual CSS in rails so that it can use sass and will be compressed in the assets pathline
   https://github.com/tekniklr/tekniklr.com/blob/main/app/assets/stylesheets/wordpress.scss
 */
