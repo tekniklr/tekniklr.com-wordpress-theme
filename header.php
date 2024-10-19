@@ -12,7 +12,7 @@
     <?php wp_head(); ?>
   </head>
 
-  <body onload="prettyPrint()">
+  <body>
     <div id="container">
       <?php $header = file_get_contents("https://tekniklr.com/static/header"); echo $header; ?>
       <?php $navigation = file_get_contents("https://tekniklr.com/static/navigation"); echo $navigation; ?>
