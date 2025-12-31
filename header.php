@@ -4,11 +4,11 @@
     <?php $headincmeta = file_get_contents("https://tekniklr.com/static/headincmeta"); echo $headincmeta; ?>
     <title><?php
   	  global $page, $paged;
-  	  $title = wp_title(' ☆ ', false, 'right');
+  	  $title = wp_title(' - ', false, 'right');
   	  if (!empty($title)) {
   	    echo strtolower($title);
 	    }
-    ?>blog ☆ tekniklr</title>
+    ?>blog - tekniklr.com</title>
     <?php wp_head(); ?>
   </head>
 
